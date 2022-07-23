@@ -110,7 +110,7 @@ class User extends Equatable {
       updatedAt: map['updatedAt'] ?? 0,
       isActive: map['isActive'] ?? false,
       dob: map['dob'] ?? 0,
-      permisions: List<String>.from(map['permisions']),
+      permisions: List<String>.from(map['permisions'] ?? []),
       favorites: List<String>.from(map['favorites'] ?? []),
     );
   }

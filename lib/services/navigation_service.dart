@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
 import 'package:foda_admin/screens/authentication/authentication_view.dart';
@@ -14,7 +14,6 @@ import '../screens/dashboard/pages/create_food/create_food_page.dart';
 import '../screens/dashboard/pages/foods/foods_page.dart';
 import '../screens/dashboard/pages/overview/overview_page.dart';
 import 'get_it.dart';
-import '../models/routing_data.dart';
 import 'dart:html' as html;
 
 class NavigationService {
@@ -41,11 +40,9 @@ class NavigationService {
   }
 
   Route? onGeneratedRoute(RouteSettings settings) {
-    final routeData = settings.name?.getRouteData;
+    html.window.history.pushState(null, 'foda', "#${settings.name}");
 
-    html.window.history.pushState(null, 'foda', "#${routeData?.route}");
-
-    switch (routeData?.route) {
+    switch (settings.name) {
       case authPath:
         return navigateToPageRoute(settings, const AuthenticationView());
       case overview:
@@ -79,10 +76,6 @@ class NavigationService {
       transitionsBuilder: (c, anim, a2, child) => FadeTransition(opacity: anim, child: child),
       transitionDuration: const Duration(milliseconds: 200),
     );
-  }
-
-  pushNamePath(String path, [Object? arguments]) {
-    Navigator.of(navigatorKey.currentContext!).pushNamed(path, arguments: arguments);
   }
 
   void navigatePushReplaceName(String path) {
