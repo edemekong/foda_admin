@@ -1,0 +1,74 @@
+name: foda_admin
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  #database
+  firebase_core: ^1.16.0
+  firebase_auth: ^3.3.17
+  google_sign_in: ^5.3.0
+
+  #new
+  firebase_storage: ^10.2.15
+  firebase_dynamic_links: ^4.2.2
+  cloud_firestore: ^3.1.10
+  responsive_builder: ^0.4.2
+
+  #state management control
+  provider: ^6.0.2
+  either_dart: ^0.1.4
+  get_it: ^7.2.0
+
+  #utils
+  intl: ^0.17.0
+  extended_image: ^6.0.3
+  equatable: ^2.0.3
+  shared_preferences: ^2.0.13
+  url_launcher: ^6.1.0
+  random_string: ^2.3.1
+  file_picker: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+
+    - family: ArimaMadurai
+      fonts:
+        - asset: assets/fonts/ArimaMadurai-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/ArimaMadurai-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/ArimaMadurai-Bold.ttf
+          weight: 700
