@@ -21,8 +21,6 @@ class UserRepository {
 
   StreamSubscription? _authStreamSubscription;
 
-  ValueNotifier<bool> isAuthenticating = ValueNotifier<bool>(false);
-
   String? get currentUserUID => _authService.auth.currentUser?.uid;
 
   set setCurrentUser(User? user) {
@@ -55,9 +53,17 @@ class UserRepository {
       if (userSnapshot.exists) {
         final data = userSnapshot.data() as Map<String, dynamic>;
         final User user = User.fromMap(data);
+
+        if (!user.isAdmin) {
+          await logout();
+          fodaPrint("user is not an admin");
+          return const Left(ErrorHandler(message: "User is not an admin"));
+        }
+
         setCurrentUser = user;
 
         listenToCurrentUser(user.uid);
+
         return Right(user);
       } else {
         return const Left(ErrorHandler(message: "User does not exist"));
@@ -72,19 +78,12 @@ class UserRepository {
       final logIn = await _authService.logIn(email, password);
       if (logIn.isRight) {
         final firebaseUser = logIn.right;
-        final getCurrentUserData = await getCurrentUser(firebaseUser.uid);
-
-        if (getCurrentUserData.isRight) {
-          final user = getCurrentUserData.right;
-          if (!user.isAdmin) {
-            // logout();
-            return const Left(ErrorHandler(message: "User is not an admin"));
-          }
-
-          return Right(getCurrentUserData.right);
-        } else {
-          return Left(getCurrentUserData.left);
+        final getUser = await getCurrentUser(firebaseUser.uid);
+        if (getUser.isRight) {
+          return Right(getUser.right);
         }
+
+        return Left(getUser.left);
       } else {
         return Left(ErrorHandler(message: logIn.left.message.toString()));
       }

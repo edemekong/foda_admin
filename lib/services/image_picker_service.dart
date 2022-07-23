@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:foda_admin/utils/common.dart';
 
 class ImagePickerService {
   /// Returns byte lists of selected images, or null if no image was selected
@@ -16,27 +15,6 @@ class ImagePickerService {
     } else {
       return null;
     }
-  }
-
-  //Not yet tested for web
-  Future<Uint8List?> pickVideo() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.video);
-    if (result != null) {
-      return result.files.single.bytes;
-    } else {
-      return null;
-    }
-  }
-
-  Future<bool> deleteImage(String ref, String storePath) async {
-    try {
-      Reference firebaseStorageRef = FirebaseStorage.instance.ref(ref).child(storePath);
-      await firebaseStorageRef.delete();
-      return true;
-    } catch (e) {
-      fodaPrint(e);
-    }
-    return false;
   }
 
   Future<String> uploadImageToDefaultBucket(Uint8List image, String storagePath, {String ref = 'foods'}) async {

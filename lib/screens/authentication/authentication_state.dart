@@ -14,8 +14,6 @@ class AuthenticationState extends BaseState {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
-  User? currentUser;
-
   AuthenticationState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();

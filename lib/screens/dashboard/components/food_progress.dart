@@ -5,22 +5,10 @@ import '../../../constant/menu.dart';
 import '../../../themes/app_theme.dart';
 
 List<Menu> tabs = const [
-  Menu(
-    title: 'Details',
-    icon: Icons.folder_copy,
-  ),
-  Menu(
-    icon: Icons.photo_camera_rounded,
-    title: 'Branding',
-  ),
-  Menu(
-    icon: Icons.monetization_on,
-    title: 'Pricing',
-  ),
-  Menu(
-    icon: Icons.summarize_outlined,
-    title: 'Summery',
-  ),
+  Menu(title: 'Details', icon: Icons.folder_copy),
+  Menu(icon: Icons.photo_camera_rounded, title: 'Branding'),
+  Menu(icon: Icons.monetization_on, title: 'Pricing'),
+  Menu(icon: Icons.summarize_outlined, title: 'Summery'),
 ];
 
 class CreateFoodProgress extends StatelessWidget {
