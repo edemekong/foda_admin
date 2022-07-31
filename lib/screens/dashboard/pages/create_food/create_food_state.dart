@@ -75,15 +75,13 @@ class CreateFoodState extends BaseState {
   void moveToNexPage() {
     currentPage++;
     notifyListeners();
-
-    pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+    animateToPage(currentPage);
   }
 
   void moveToPreviousPage() {
     currentPage--;
     notifyListeners();
-
-    pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+    animateToPage(currentPage);
   }
 
   void animateToPage(int page) {

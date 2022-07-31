@@ -33,7 +33,7 @@ class UrlHandlerRouterDelegate extends RouterDelegate<String> {
         navigationService.setNavigationBar = true;
       }
       navigationService.routeNotifier.value = configuration;
-      navigationService.navigatorKey.currentState!.pushNamedAndRemoveUntil(configuration, (route) => false);
+      navigatePushReplaceName(configuration);
     } else {
       if (userRepository.currentUserUID == null) {
         navigatePushReplaceName(authPath);

@@ -94,9 +94,11 @@ class UserRepository {
 
   Stream<User?> listenToCurrentUser(String uid) async* {
     try {
-      final snapshots = usersCollection.doc(uid).snapshots();
       _userStreamSubscriptions?.cancel();
       _userStreamSubscriptions = null;
+
+      final snapshots = usersCollection.doc(uid).snapshots();
+
       _userStreamSubscriptions = snapshots.listen((document) {
         if (document.exists) {
           final data = document.data() as Map<String, dynamic>;

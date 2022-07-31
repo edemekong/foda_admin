@@ -18,7 +18,9 @@ import 'dart:html' as html;
 
 class NavigationService {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   UserRepository userRepo = locate<UserRepository>();
+
   ValueNotifier<String> routeNotifier = ValueNotifier<String>(authPath);
 
   ValueNotifier<bool> showNavigationBar = ValueNotifier<bool>(false);
